@@ -23,6 +23,12 @@ https://techblog.gmo-ap.jp/2022/12/09/mime_sniffing/
 */
 
 app.use(helmet.noSniff());
+
+/*
+IEでダウンロードしたHTMLファイルが実行される問題の対策
+*/
+app.use(helmet.ieNoOpen());
+
 module.exports = app;
 const api = require('./server.js');
 app.use(express.static('public'));
