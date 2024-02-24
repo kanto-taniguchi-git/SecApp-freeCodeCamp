@@ -50,6 +50,19 @@ app.use(helmet.dnsPrefetchControl({ allow: false }));
 */
 app.use(helmet.noCache());
 
+/*
+CSP
+様々な攻撃からWebアプリケーションを保護できる
+意図しないものがページに挿入されることを防ぐ
+ソースの許可リストは配列
+*/
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],                    // 他のドメインからのリソースをブロック
+    scriptSrc: ["'self'", "trusted-cdn.com"],  // 自サイトのJavaScriptとtrusted-cdn.comからのスクリプトのみ許可
+  }
+}));
+
 module.exports = app;
 const api = require('./server.js');
 app.use(express.static('public'));
