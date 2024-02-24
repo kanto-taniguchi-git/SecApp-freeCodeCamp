@@ -2,6 +2,9 @@ const express = require('express');
 const helmet = require('helmet');
 const app = express();
 app.use(helmet.hidePoweredBy());
+// deny, someorigin, allow-from
+app.use(helmet.frameguard({ action: 'deny'}));           // <iframe>は完全に禁止
+// app.use(helmet.frameguard({ action: 'sameorigin'}));  // 自サイト内でのみ許可
 
 module.exports = app;
 const api = require('./server.js');
