@@ -21,13 +21,19 @@ app.use(helmet.xssFilter());
 MIMEスニッフィング対策
 https://techblog.gmo-ap.jp/2022/12/09/mime_sniffing/
 */
-
 app.use(helmet.noSniff());
 
 /*
 IEでダウンロードしたHTMLファイルが実行される問題の対策
 */
 app.use(helmet.ieNoOpen());
+
+/*
+指定された期間はHTTPSを常に使用するようにする設定
+forceは既存の設定を上書きする
+*/
+const nintyDaysSeconds = 90 * 24 * 60 * 60;
+app.use(helmet.hsts({ maxAge: nintyDaysSeconds, force: true }));
 
 module.exports = app;
 const api = require('./server.js');
