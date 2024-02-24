@@ -42,7 +42,13 @@ DNSプリフェッチ制御
 ・ユーザーが実際には訪問していないウェブページの情報をDNSサーバーが取得することになるため、プライバシーの問題が発生する可能性がある
 ・無効にすると対策ができるがパフォーマンスは低下する
 */
-app.use(helmet.dnsPrefetchControl()); 
+app.use(helmet.dnsPrefetchControl({ allow: false })); 
+
+/*
+キャッシュの無効化
+ユーザーが古い情報をロードすることを防ぐ
+*/
+app.use(helmet.noCache());
 
 module.exports = app;
 const api = require('./server.js');
