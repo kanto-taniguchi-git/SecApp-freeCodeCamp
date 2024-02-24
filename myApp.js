@@ -35,6 +35,16 @@ forceは既存の設定を上書きする
 const nintyDaysSeconds = 90 * 24 * 60 * 60;
 app.use(helmet.hsts({ maxAge: nintyDaysSeconds, force: true }));
 
+/*
+DNSプリフェッチ制御
+・DNSプリフェッチとは、リンク先のドメイン名に対して事前にDNS解決を行うこと
+・DNSプリフェッチを行うことで、リンク先（ページ内リンク）のページを表示する際に、DNS解決にかかる時間を短縮することができる
+・ユーザーが実際には訪問していないウェブページの情報をDNSサーバーが取得することになるため、プライバシーの問題が発生する可能性がある
+・無効にすると対策ができるがパフォーマンスは低下する
+*/
+app.use(helmet.dnsPrefetchContorol()); 
+
+
 module.exports = app;
 const api = require('./server.js');
 app.use(express.static('public'));
