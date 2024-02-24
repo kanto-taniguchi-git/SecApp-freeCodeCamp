@@ -5,7 +5,6 @@ const app = express();
 app.use(helmet.hidePoweredBy());
 
 /*
-X-Frame-Options(deny, someorigin, allow-from)
 クリックジャッキング対策
 クリックジャッキングとはユーザーが意図しないリアクションを実行させられるセキュリティ攻撃
 */
@@ -13,12 +12,17 @@ app.use(helmet.frameguard({ action: 'deny'}));           // 全てのブラウ�
 // app.use(helmet.frameguard({ action: 'sameorigin'}));  // 自サイト内でのみ許可
 
 /*
-サニタイズ
 XSS対策
 悪意のあるスクリプトを脆弱なページに挿入するもの
 */
 app.use(helmet.xssFilter());
 
+/*
+MIMEスニッフィング対策
+https://techblog.gmo-ap.jp/2022/12/09/mime_sniffing/
+*/
+
+app.use(helmet.noSniff());
 module.exports = app;
 const api = require('./server.js');
 app.use(express.static('public'));
