@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+Strict-Transport-Security: max-age=7776000; includeSubDomains
+X-DNS-Prefetch-Control: off
+Surrogate-Control: no-store
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Security-Policy: default-src 'self'; script-src 'self' trusted-cdn.com
+X-Content-Security-Policy: default-src 'self'; script-src 'self' trusted-cdn.com
+X-WebKit-CSP: default-src 'self'; script-src 'self' trusted-cdn.com
+Accept-Ranges: bytes
+Last-Modified: Fri, 23 Feb 2024 08:22:43 GMT
+ETag: W/"314-18dd50f40ec"
+Content-Type: text/html; charset=UTF-8
+Content-Length: 788
+Date: Sun, 25 Feb 2024 13:17:46 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5

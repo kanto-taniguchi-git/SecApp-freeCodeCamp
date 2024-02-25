@@ -7,9 +7,10 @@ app.use(helmet.hidePoweredBy());
 /*
 クリックジャッキング対策
 クリックジャッキングとはユーザーが意図しないリアクションを実行させられるセキュリティ攻撃
+あくまで自分のWebサイトの表示を制御するためのもの
 */
-app.use(helmet.frameguard({ action: 'deny'}));           // 全てのブラウザでサイトをフレーム内に表示することをブロック
-// app.use(helmet.frameguard({ action: 'sameorigin'}));  // 自サイト内でのみ許可
+app.use(helmet.frameguard({ action: 'deny'}));           // 全てのブラウザで自分のWebサイトをフレーム内に表示することをブロック
+// app.use(helmet.frameguard({ action: 'sameorigin'}));  // 自分のWebサイトで自分のWebサイトをフレーム内に表示することを許可
 
 /*
 XSS対策
@@ -62,6 +63,26 @@ app.use(helmet.contentSecurityPolicy({
     scriptSrc: ["'self'", "trusted-cdn.com"],  // 自サイトのJavaScriptとtrusted-cdn.comからのスクリプトのみ許可
   }
 }));
+
+/* 
+app.use(helmet());はnoCashとcontentSecurityPolicyを除外して設定
+helmet()のconfigオブジェクトを使って個別に設定することもできる
+例えば、以下のように設定することもできる
+app.use(helmet({
+  frameguard: {
+    action: 'deny' 
+  },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "trusted-cdn.com"],
+    }
+  },
+  dnsPrefetchControl: false
+}));
+あくまでもhelmet()がベースの設定で、個別に設定することもできる
+設定内容は、curl --dump-header - http://localhost:起動ポート番号
+*/
 
 module.exports = app;
 const api = require('./server.js');

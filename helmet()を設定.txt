@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+X-DNS-Prefetch-Control: off
+X-Frame-Options: SAMEORIGIN
+Strict-Transport-Security: max-age=15552000; includeSubDomains
+X-Download-Options: noopen
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Fri, 23 Feb 2024 08:22:43 GMT
+ETag: W/"314-18dd50f40ec"
+Content-Type: text/html; charset=UTF-8
+Content-Length: 788
+Date: Sun, 25 Feb 2024 13:13:46 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
